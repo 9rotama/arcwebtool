@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+
+body{
+    padding-top: 2em;
+}
+.container{
+    max-width: 40em;
+}
+.img-thumbnail{
+    width: 200px;
+    display: inline;
+}
+#output{
+    font-family: "Inconsolata", sans-serif;
+}
