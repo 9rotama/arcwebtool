@@ -4,22 +4,25 @@ let arcstr_element, divnum_element;
 
 function cutArc(arcstr,divnum){
     let output = document.getElementById('cut output');
-    let arcstr_feedback = document.getElementById('cut arcString feedback');
-    let text = document.createElement('span');
+    let swapTrace = document.getElementById('cut swapTrace');
+    //要素取得
 
     let arcstr_vali = checkArcString(arcstr);
+    let text = document.createElement('span');
 
     if(arcstr_vali !== 'OK'){
         output.innerHTML = '';
         output.insertAdjacentText('beforeend', arcstr_vali);
         console.log(arcstr_feedback.innerHTML)
         return;
-    } 
+    }
+    //アークの構文チェック 
 
     let arcstr_sp = arcstr.split(',');
     arcstr_sp[0]=arcstr_sp[0].slice(4);
     arcstr_sp[9]=arcstr_sp[9].slice(0,5);
 
+    let arctime = Number(arcstr_sp[1])-Number(arcstr_sp[0]); //アーク全体が何msか
     let divnum_vali = checkNum(divnum,Number(arcstr_sp[1])-Number(arcstr_sp[0]))
 
     if(divnum_vali !== 'OK'){
@@ -27,17 +30,14 @@ function cutArc(arcstr,divnum){
         output.insertAdjacentText('beforeend', divnum_vali);
         return;
     }
-    
-
-    //エラー処理
-
-    let arctime = Number(arcstr_sp[1])-Number(arcstr_sp[0]); //アーク全体が何msか
-
-     //エラー処理
+    //分割数のチェック
     
     output.innerHTML = '';
+    let traceBool = arcstr_sp[9];
+    console.log(traceBool)
 
     for (let i=0; i<divnum; i++) {
+
         let divstart_tim = Number(arcstr_sp[0])+(arctime*(i/divnum));
         let divend_tim = Number(arcstr_sp[0])+(arctime*((i+1)/divnum));
         let divstart_x = cal_xcoord(parseFloat(arcstr_sp[2]),parseFloat(arcstr_sp[3]),i/divnum,arcstr_sp[4]);
@@ -45,10 +45,16 @@ function cutArc(arcstr,divnum){
         let divend_x = cal_xcoord(parseFloat(arcstr_sp[2]),parseFloat(arcstr_sp[3]),(i+1)/divnum,arcstr_sp[4]);
         let divend_y = cal_ycoord(parseFloat(arcstr_sp[5]),parseFloat(arcstr_sp[6]),(i+1)/divnum,arcstr_sp[4]);
         
-        text = ToArcString(divstart_tim,divend_tim,divstart_x,divstart_y,divend_x,divend_y,arcstr_sp.slice(7));
+        text = ToArcString(divstart_tim, divend_tim, divstart_x, divstart_y, divend_x, divend_y, arcstr_sp[7], 
+            swapTrace.checked && i%2 ? invertTraceBool(traceBool) : traceBool);
+            //アークトレース交互にチェック＆偶数個のとき反転
 
         output.insertAdjacentText('beforeend', text);
-    } 
+    }
+    
+    function invertTraceBool(tracebool){
+        return tracebool === 'true' ? 'false' : 'true' 
+    }
 }
 
 function cutButtonClicked() {
@@ -124,7 +130,7 @@ function checkNum(divnum,time){
     }
 }
 
-function ToArcString(divstart_tim,divend_tim,divstart_x,divstart_y,divend_x,divend_y,arcstr_sp){
+function ToArcString(divstart_tim,divend_tim,divstart_x,divstart_y,divend_x,divend_y,arccolor,istrace){
     const text = 'arc('
     +divstart_tim.toFixed()+','
     +divend_tim.toFixed()+','
@@ -133,9 +139,9 @@ function ToArcString(divstart_tim,divend_tim,divstart_x,divstart_y,divend_x,dive
     +'s,'
     +divstart_y.toFixed(2)+','
     +divend_y.toFixed(2)+','
-    +arcstr_sp[0]+','
-    +arcstr_sp[1]+','
-    +arcstr_sp[2]+');\n';
+    +arccolor+','
+    +'none,'
+    +istrace+');\n';
     return text;
 }
 
