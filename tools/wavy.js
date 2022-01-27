@@ -9,7 +9,7 @@ function wavyArc(arcstr1,arcstr2,divnum,wvfm){
 
     if(arcstr1_vali !== 'OK'){
         output.innerHTML = '';
-        output.insertAdjacentText('beforeend', arcstr1_vali);
+        output.insertAdjacentText('beforeend', arcstr1_vali+'(アーク1)');
         console.log(output.innerHTML)
         return;
     } 
@@ -19,7 +19,7 @@ function wavyArc(arcstr1,arcstr2,divnum,wvfm){
 
     if(arcstr2_vali !== 'OK'){
         output.innerHTML = '';
-        output.insertAdjacentText('beforeend', arcstr2_vali);
+        output.insertAdjacentText('beforeend', arcstr2_vali+'(アーク2)');
         console.log(output.innerHTML)
         return;
     } 
@@ -67,7 +67,8 @@ function wavyArc(arcstr1,arcstr2,divnum,wvfm){
                 divend_x = cal_xcoord(parseFloat(arcstr2_sp[2]),parseFloat(arcstr2_sp[3]),(i+1)/divnum,arcstr2_sp[4]);
                 divend_y = cal_ycoord(parseFloat(arcstr2_sp[5]),parseFloat(arcstr2_sp[6]),(i+1)/divnum,arcstr2_sp[4]);
                 
-                text = ToArcString(divstart_tim,divend_tim,divstart_x,divstart_y,divend_x,divend_y,arcstr1_sp.slice(7));
+                text = ToArcString(divstart_tim, divend_tim, divstart_x, divstart_y, divend_x, divend_y, arcstr1_sp[7], 
+                    arcstr1_sp[9]);
 
             } else {
                 divstart_tim = Number(arcstr1_sp[0])+(arctime*(i/divnum));
@@ -77,7 +78,8 @@ function wavyArc(arcstr1,arcstr2,divnum,wvfm){
                 divend_x = cal_xcoord(parseFloat(arcstr1_sp[2]),parseFloat(arcstr1_sp[3]),(i+1)/divnum,arcstr1_sp[4]);
                 divend_y = cal_ycoord(parseFloat(arcstr1_sp[5]),parseFloat(arcstr1_sp[6]),(i+1)/divnum,arcstr1_sp[4]);
                 
-                text = ToArcString(divstart_tim,divend_tim,divstart_x,divstart_y,divend_x,divend_y,arcstr1_sp.slice(7));
+                text = ToArcString(divstart_tim, divend_tim, divstart_x, divstart_y, divend_x, divend_y, arcstr1_sp[7], 
+                    arcstr1_sp[9]);
 
 
             }
@@ -94,7 +96,8 @@ function wavyArc(arcstr1,arcstr2,divnum,wvfm){
                 divend_x = cal_xcoord(parseFloat(arcstr1_sp[2]),parseFloat(arcstr1_sp[3]),(i+1)/divnum,arcstr1_sp[4]);
                 divend_y = cal_ycoord(parseFloat(arcstr1_sp[5]),parseFloat(arcstr1_sp[6]),(i+1)/divnum,arcstr1_sp[4]);
                 
-                text = ToArcString(divstart_tim,divend_tim,divstart_x,divstart_y,divend_x,divend_y,arcstr1_sp.slice(7));
+                text = ToArcString(divstart_tim, divend_tim, divstart_x, divstart_y, divend_x, divend_y, arcstr1_sp[7], 
+                    arcstr1_sp[9]);
 
 
                 
@@ -105,7 +108,8 @@ function wavyArc(arcstr1,arcstr2,divnum,wvfm){
                 divend_x = cal_xcoord(parseFloat(arcstr2_sp[2]),parseFloat(arcstr2_sp[3]),(i+1)/divnum,arcstr2_sp[4]);
                 divend_y = cal_ycoord(parseFloat(arcstr2_sp[5]),parseFloat(arcstr2_sp[6]),(i+1)/divnum,arcstr2_sp[4]);
                 
-                text += ToArcString(divstart_tim,divend_tim,divstart_x,divstart_y,divend_x,divend_y,arcstr1_sp.slice(7));
+                text += ToArcString(divstart_tim, divend_tim, divstart_x, divstart_y, divend_x, divend_y, arcstr1_sp[7], 
+                    arcstr1_sp[9]);
 
 
                 
@@ -117,7 +121,8 @@ function wavyArc(arcstr1,arcstr2,divnum,wvfm){
                 divend_x = cal_xcoord(parseFloat(arcstr2_sp[2]),parseFloat(arcstr2_sp[3]),(i+1)/divnum,arcstr2_sp[4]);
                 divend_y = cal_ycoord(parseFloat(arcstr2_sp[5]),parseFloat(arcstr2_sp[6]),(i+1)/divnum,arcstr2_sp[4]);
                 
-                text = ToArcString(divstart_tim,divend_tim,divstart_x,divstart_y,divend_x,divend_y,arcstr1_sp.slice(7));
+                text = ToArcString(divstart_tim, divend_tim, divstart_x, divstart_y, divend_x, divend_y, arcstr1_sp[7], 
+                    arcstr1_sp[9]);
 
 
                 
@@ -128,7 +133,8 @@ function wavyArc(arcstr1,arcstr2,divnum,wvfm){
                 divend_x = cal_xcoord(parseFloat(arcstr1_sp[2]),parseFloat(arcstr1_sp[3]),(i+1)/divnum,arcstr1_sp[4]);
                 divend_y = cal_ycoord(parseFloat(arcstr1_sp[5]),parseFloat(arcstr1_sp[6]),(i+1)/divnum,arcstr1_sp[4]);
                 
-                text += ToArcString(divstart_tim,divend_tim,divstart_x,divstart_y,divend_x,divend_y,arcstr1_sp.slice(7));
+                text += ToArcString(divstart_tim, divend_tim, divstart_x, divstart_y, divend_x, divend_y, arcstr1_sp[7], 
+                    arcstr1_sp[9]);
 
 
             }
