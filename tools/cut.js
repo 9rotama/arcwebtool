@@ -13,7 +13,7 @@ function cutArc(arcstr,divnum){
     if(arcstr_vali !== 'OK'){
         output.innerHTML = '';
         output.insertAdjacentText('beforeend', arcstr_vali);
-        console.log(arcstr_feedback.innerHTML)
+        console.log(arcstr_vali)
         return;
     }
     //アークの構文チェック 
@@ -63,6 +63,8 @@ function cutButtonClicked() {
     cutArc(arcstr_element.value,divnum_element.value);
 }
 
+//----以下cutとwavy共通----//
+
 function cal_xcoord(start,end,t,type) {
     let res;
     if (type == 'b') {
@@ -94,7 +96,7 @@ function cal_ycoord(start,end,t,type) {
 const types = ['b', 's', 'si', 'so', 'sisi', 'siso', 'sosi', 'soso'];
 
 function checkArcString(arcstr){
-    if(arcstr.indexOf(',') === -1 || arcstr.indexOf('arc(') === -1 || arcstr.indexOf(');') === -1){
+    if(arcstr.indexOf(',') === -1 || arcstr.slice(0,4) !== 'arc(' || arcstr.slice(-2) !== ');'){
         console.log(arcstr);
         return '「arc(」で始まり「;」で終わるまでの１行を入力してください'
     }else{
