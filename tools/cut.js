@@ -20,7 +20,7 @@ function cutArc(arcstr,divnum){
 
     let arcstr_sp = arcstr.split(',');
     arcstr_sp[0]=arcstr_sp[0].slice(4);
-    arcstr_sp[9]=arcstr_sp[9].slice(0,5);
+    arcstr_sp[9]=arcstr_sp[9].slice(0,-2);
 
     let arctime = Number(arcstr_sp[1])-Number(arcstr_sp[0]); //アーク全体が何msか
     let divnum_vali = checkNum(divnum,Number(arcstr_sp[1])-Number(arcstr_sp[0]))
@@ -105,7 +105,6 @@ function checkArcString(arcstr){
             return '「arc(」で始まり「;」で終わるまでの１行を入力してください'
         }else{
             arcstr_sp[0]=arcstr_sp[0].slice(4);
-            arcstr_sp[9]=arcstr_sp[9].slice(0,5);
             if(!Number.isInteger(parseFloat(arcstr_sp[0])) || !Number.isInteger(parseFloat(arcstr_sp[0])) || !Number.isInteger(parseFloat(arcstr_sp[0]))){
                 return 'タイミングの値が整数ではありません'
             }else if(isNaN(arcstr_sp[2]) || isNaN(arcstr_sp[3]) || isNaN(arcstr_sp[5]) || isNaN(arcstr_sp[6])){
@@ -114,7 +113,7 @@ function checkArcString(arcstr){
                 return 'b,s,si,so,sisi,siso,sosi,soso以外のタイプは使えません'
             }else if(arcstr_sp[8] !== 'none'){
                 return '9つ目の引数は"none"である必要があります'
-            }else if(arcstr_sp[9] !== 'true' && arcstr_sp[9] !== 'false'){
+            }else if(arcstr_sp[9] !== 'true);' && arcstr_sp[9] !== 'false);'){
                 return '最後の引数は"true"か"false"である必要があります'
             }
         }
