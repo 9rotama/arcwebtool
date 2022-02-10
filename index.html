@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>arctool</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link href="https://9rotama.github.io/arcwebtool/css/a.css" rel="stylesheet" type="text/css" media="all">
+    </head>
+    
+    <body>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        
+        <div class="container">
+            
+            <h1>Arctool置き場</h1>
+            
+            <div class="accordion" id="accordionPanelsStayOpenExample">
+                
+                <div class="accordion-item">
+                    
+                    <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false" aria-controls="panelsStayOpen-collapseOne">
+                        cutArc
+                        </button>
+                    </h2>
+                    
+                    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingOne">
+                        
+                        <div class="accordion-body">
+                            
+                            <p>amygdataのようなアークを生成します。</p>
+                            
+                            <img src="img/cut.png" class="mb-2 img-thumbnail"><br>
+                            
+                            <label for="cut arcString">アークの文字列</label>
+                            <input type="text" class="mb-2 form-control" id="cut arcString" placeholder="arc(11100,11400,1.00,0.50,si,1.00,0.00,1,none,false);" required></input>
+                            
+                            <label for="cut divisionNum">分割数</label>
+                            <input type="text" class="mb-2 form-control" id="cut divisionNum" placeholder="10" required>
+                            
+                            <div class="mb-2 form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="cut swapTrace">
+                                <label class="form-check-label" for="cut swapTrace">
+                                    アークトレースを交互に
+                                </label>
+                            </div>                             
+                            
+                            <button type="button" class="mb-3 btn btn-outline-primary" id="cut generate" onclick="cutButtonClicked();">Generate</button>
+                            
+                            <textarea type="text" class="mb-2 form-control" id="cut output" placeholder="生成結果" readonly></textarea>
+                        
+                        </div>
+                    
+                    </div>
+                
+                </div>
+                
+                <div class="accordion-item">
+                    
+                    <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                        
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                        wavyArc
+                        </button>
+                    
+                    </h2>
+                    
+                    <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+                        
+                        <div class="accordion-body">
+                            
+                            <p>2つのアークの間を往復するギザギザアークを生成します。</p>
+                            
+                            <img src="img/wavy.png" class="mb-2 img-thumbnail">                            
+                            <img src="img/wavy2.png" class="img-thumbnail">
+                            
+                            <p class="text-muted">※同じタイミング、同じ長さのアークのみ入力できます<br>※アークの色、トレースかどうかはアーク1と同じ設定になります。</p>
+                            
+                            <label for="wavy arcString1">アーク1</label>
+                            <input type="text" class="mb-2 form-control" id="wavy arcString1" placeholder="arc(11100,11400,1.00,0.50,si,1.00,1.00,1,none,false);"></input>
+                            
+                            <label for="wavy arcString2">アーク2</label>
+                            <input type="text" class="mb-2 form-control" id="wavy arcString2" placeholder="arc(11100,11400,1.00,0.00,so,0.00,0.00,1,none,false);"></input>
+                            
+                            <label for="wavy divisionNum">分割(往復)数</label>
+                            <input type="text" class="mb-2 form-control" id="wavy divisionNum" placeholder="10">
+                            
+                            <label for="wavy waveform">波形</label>
+                            <select class="mb-3 form-select" id="wavy waveform">
+                                <option value="1">三角波(例: Heavenly Caress)</option>
+                                <option value="2">方形波(例: goldenslaughterer)</option>
+                            </select>
+                            
+                            <div class="mb-2">
+                                <button type="button" class="mb-2 btn btn-outline-primary" id="wavy generate" onclick="wavyButtonClicked();">Generate</button>
+                            </div>
+                            
+                            <textarea type="text" class="mb-2 form-control" id="wavy output" placeholder="生成結果" readonly></textarea>
+                        
+                        </div>
+                    
+                    </div>
+                
+                </div>
+                
+                <div class="accordion-item">
+                    
+                    <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+                        
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                        movingPolygon
+                        </button>
+                    
+                    </h2>
+                    
+                    <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
+                        
+                        <div class="accordion-body">
+                            <p>作成中</p>
+                        </div>
+                    
+                    </div>
+                    
+                </div>
+            
+            </div>
+        
+        </div> 
+
+        <p class="text-center">
+            ©2021 <a href="https://twitter.com/sugoi_extropy">komachi</a>
+        </p>
+        
+        <script type="text/javascript" src="tools/cut.js"></script>
+        <script type="text/javascript" src="tools/wavy.js"></script>
+    
+    </body>
+
+</html>
